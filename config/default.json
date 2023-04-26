@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://rubnitos:panasonic@cluster0.pynlgls.mongodb.net/test",
+  "jwtSecret": "mysecrettoken"
+}
