@@ -66,7 +66,7 @@ router.post(
   }
 );
 
-// @route   DELETE api/car/:car_id
+// @route   DELETE api/cars/delete/:car_id
 // @desc    Delete car
 // @access  Public
 router.delete("/delete/:car_id", async (req, res) => {
