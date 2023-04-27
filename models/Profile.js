@@ -23,10 +23,22 @@ const ProfileSchema = new mongoose.Schema({
       required: true,
     },
   },
-  payment: {
-    type: [String],
-    required: true,
-  },
+  payment: [
+    {
+      number: {
+        type: String,
+        required: true,
+      },
+      code: {
+        type: String,
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

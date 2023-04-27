@@ -72,4 +72,116 @@ router.post(
   }
 );
 
+// @route   GET api/profile
+// @desc    Get all profiles
+// @access  Public
+router.get("/", async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    res.json(profiles);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   GET api/profile/user/:user_id
+// @desc    Get profile by user id
+// @access  Public
+router.get("/user/:user_id", async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id,
+    }).populate("user", ["name", "avatar"]);
+
+    if (!profile) return res.status(400).json({ msg: "Profile not found" });
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error.message);
+    if (error.kind === "ObjectId")
+      return res.status(400).json({ msg: "Profile not found" });
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   DELETE api/profile
+// @desc    Delete profile & user
+// @access  Private
+router.delete("/", auth, async (req, res) => {
+  try {
+    await Profile.findOneAndRemove({ user: req.user.id });
+
+    await User.findOneAndRemove({ _id: req.user.id });
+
+    res.json({ msg: "User deleted" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   PUT api/profile/payment
+// @desc    Add profile experience
+// @access  Private
+router.put(
+  "/payment",
+  [
+    auth,
+    [
+      check("number", "Card number is required").not().isEmpty(),
+      check("code", "Card code is required").not().isEmpty(),
+      check("name", "Card name is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+      return res.status(400).json({ errors: errors.array() });
+
+    const { number, code, name } = req.body;
+
+    const newExp = {
+      number,
+      code,
+      name,
+    };
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      profile.payment.unshift(newExp);
+
+      await profile.save();
+
+      res.json(profile);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route   DELETE api/profile/payment/:payment_id
+// @desc    Delete profile payment
+// @access  Private
+router.delete("/payment/:payment_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const removeIndex = profile.payment
+      .map(item => item.id)
+      .indexOf(req.params.payment_id);
+
+    profile.payment.splice(removeIndex, 1);
+
+    await profile.save();
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
