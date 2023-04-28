@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
+import Footer from "./components/layout/Footer";
 
 //Redux
 import { Provider } from "react-redux";
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
         </Routes>
+        <Footer />
       </Router>
     </Provider>
   );
