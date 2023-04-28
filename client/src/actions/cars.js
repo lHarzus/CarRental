@@ -36,10 +36,10 @@ export const createCar = (formData, history) => async dispatch => {
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
+    const erros = err.response.data.erros;
 
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+    if (erros) {
+      erros.forEach(error => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: CARS_ERROR,

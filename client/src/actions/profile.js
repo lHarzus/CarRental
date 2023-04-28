@@ -89,10 +89,10 @@ export const createProfile =
         history("/dashboard");
       }
     } catch (err) {
-      const errors = err.response.data.errors;
+      const erros = err.response.data.erros;
 
-      if (errors) {
-        errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+      if (erros) {
+        erros.forEach(error => dispatch(setAlert(error.msg, "danger")));
       }
       dispatch({
         type: PROFILE_ERROR,
@@ -121,10 +121,10 @@ export const addPayment = (formData, history) => async dispatch => {
 
     //history("/dashboard");
   } catch (err) {
-    const errors = err.response.data.errors;
+    const erros = err.response.data.erros;
 
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+    if (erros) {
+      erros.forEach(error => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: PROFILE_ERROR,
@@ -145,10 +145,10 @@ export const deleteExperience = id => async dispatch => {
 
     dispatch(setAlert("Experience Removed", "success"));
   } catch (err) {
-    const errors = err.response.data.errors;
+    const erros = err.response.data.erros;
 
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+    if (erros) {
+      erros.forEach(error => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: PROFILE_ERROR,
@@ -168,10 +168,10 @@ export const deleteAccount = () => async dispatch => {
 
       dispatch(setAlert("Your account has been deleted"));
     } catch (err) {
-      const errors = err.response.data.errors;
+      const erros = err.response.data.erros;
 
-      if (errors) {
-        errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+      if (erros) {
+        erros.forEach(error => dispatch(setAlert(error.msg, "danger")));
       }
       dispatch({
         type: PROFILE_ERROR,

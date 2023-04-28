@@ -21,9 +21,9 @@ router.post(
     check("photo", "photo is required").not().isEmpty(),
   ],
   async (req, res) => {
-    const errors = validationResult(req); //check if theres any errors
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.errors }); //badrequest
+    const erros = validationResult(req); //check if theres any erros
+    if (!erros.isEmpty()) {
+      return res.status(400).json({ erros: erros.erros }); //badrequest
     }
 
     const {

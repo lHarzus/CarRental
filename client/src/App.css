@@ -46,13 +46,13 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--color-headings);
+  color: var(--color-accent);
   margin-bottom: 1rem; /*margem entre texto e titulo*/
   line-height: 1.1;
 }
 
 h1 {
-  font-size: 7rem;
+  font-size: 6rem;
 }
 
 h2 {
@@ -70,7 +70,7 @@ p {
 
 @media screen and (min-width: 1024px) {
   h1 {
-    font-size: 8rem;
+    font-size: 7rem;
   }
   h2 {
     font-size: 4rem;
@@ -96,6 +96,68 @@ li {
 
 ul {
   padding: 0;
+}
+
+/*Inputs*/
+
+input {
+  border-radius: 15px;
+  padding: 1rem;
+  margin: 1rem;
+  border: none;
+  box-shadow: 0px 0px 10px var(--color-body);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+input:disabled {
+  background: #dddddd;
+}
+
+/*Button*/
+.btn {
+  background: var(--color-accent);
+  color: white;
+  border-radius: 25px;
+  padding: 1rem 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #d62b00;
+  transition: background 0.2s;
+}
+
+/*Alert*/
+.alert {
+  padding: 0.8rem;
+  margin: 1rem 30vw;
+  opacity: 0.9;
+  background: var(--light-color);
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.alert-danger {
+  background: #dc3545;
+  color: #fff;
+}
+
+.alert-success {
+  background: #28a745;
+  color: #fff;
 }
 
 /*Navbar*/
@@ -125,10 +187,12 @@ ul {
   font-size: 1.8rem;
   color: var(--color-border);
   padding-bottom: 1rem;
+  transition: color 0.2s;
 }
 
 .navbar-items li a:hover {
   color: white;
+  transition: color 0.2s;
 }
 
 .navbar-logo {
@@ -237,5 +301,34 @@ ul {
 
   .footer-contacts {
     text-align: left;
+  }
+}
+
+/*Register*/
+.register {
+  padding-top: 9rem;
+  min-height: 72.2vh;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.register-form {
+  padding: 0 10vw;
+}
+
+.register-address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.register-address h3 {
+  margin: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .input {
+    width: 40vw;
   }
 }

@@ -54,7 +54,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   return (
-    <div className="navbar">
+    <header className="navbar">
       <div className="navbar-title">
         <Link
           onClick={() => {
@@ -76,7 +76,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       )}
-    </div>
+    </header>
   );
 };
 

@@ -34,9 +34,8 @@ router.post(
   "/",
   [auth, [check("phone", "Phone number is required").not().isEmpty()]],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty())
-      return res.status(400).json({ errors: errors.array() });
+    const erros = validationResult(req);
+    if (!erros.isEmpty()) return res.status(400).json({ erros: erros.array() });
 
     const { phone, address, payment } = req.body;
 
@@ -135,9 +134,8 @@ router.put(
     ],
   ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty())
-      return res.status(400).json({ errors: errors.array() });
+    const erros = validationResult(req);
+    if (!erros.isEmpty()) return res.status(400).json({ erros: erros.array() });
 
     const { number, code, name } = req.body;
 
