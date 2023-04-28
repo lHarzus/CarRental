@@ -84,6 +84,9 @@ p {
 a {
   text-decoration: none;
   cursor: pointer;
+  font-size: 2.4rem; /*mobile aproach first*/
+  line-height: 1.5; /*1.5*font size distancia entre linhas*/
+  color: var(--color-body);
 }
 
 /*Lists*/
@@ -193,5 +196,46 @@ ul {
 
   .navbar-items {
     top: 13rem;
+  }
+}
+
+/*Footer*/
+.footer {
+  background-color: rgb(56, 56, 56);
+  font-size: 2rem;
+}
+
+.footer-logo {
+  text-align: center;
+}
+
+.footer-contacts {
+  text-align: center;
+}
+
+.footer-contacts h3 {
+  color: white;
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem 0rem;
+}
+
+.footer-socials i {
+  padding: 0 1rem;
+  font-size: 3rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .footer-contacts {
+    text-align: left;
   }
 }
