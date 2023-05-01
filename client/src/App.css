@@ -332,3 +332,81 @@ input:disabled {
     width: 40vw;
   }
 }
+
+/*grids*/
+.grid-3x1{
+  display: grid;
+  grid-template-columns: 20% minmax(0, 1fr) 20%;
+  align-items: center;
+  margin: 5rem 0 ;
+  padding: 0 5rem;
+  width: 86vw;
+}
+
+.cars{
+  margin: 0 5vw;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  padding: 5rem 0;
+}
+
+.middle-item {
+  grid-column: span 4;
+}
+
+.left-item {
+  justify-content: right;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.right-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/*Landing*/
+.landing{
+  background-color: #111111;
+  color: white;
+  padding-top: 9rem;
+}
+
+.landing h1{
+  color: white;
+
+}
+
+.rent{
+  text-align: center;
+}
+
+/*Car*/
+.car-photo {
+  width: 40vw; 
+  height: 40vh; 
+  object-fit: fill;
+  border-radius: 10px;
+}
+
+.car-header h3{
+  padding-bottom: 2rem;
+  border-bottom: 1rem solid var(--color-accent);
+}
+
+.car-stats th{
+  padding: 3px;
+}
+
+.car-foto{
+  overflow: hidden;  
+  min-width: 0;     
+}
+
+/*Tables*/
+.table{
+  text-align: left;
+  font-size: 1.5rem;
+}
