@@ -359,12 +359,30 @@ input:disabled {
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 4rem;
 }
 
 .right-item {
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 4rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .grid-3x1{
+    display: block;
+  }
+
+  .cars{
+    margin: 0 5vw;
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+
+  .middle-item {
+    grid-column: span 1;
+  }
 }
 
 /*Landing*/
@@ -381,6 +399,64 @@ input:disabled {
 
 .rent{
   text-align: center;
+}
+
+.clip{
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 60% 90%, 50% 100%, 40% 90%, 0 90%);
+  background: red;
+  height: 100px;
+}
+
+.idk{
+  width: 98.8vw;
+  margin: 0;
+  padding: auto;
+}
+
+.rent-or-login{
+  background-color: rgb(255, 127, 39);
+  margin: -4.4rem 0 0;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
+.rent-or-login h2{
+  color: white;
+  padding: 3rem;
+}
+
+.input{
+  display: flex;
+  background-color: white;
+  color: black;
+  margin: 1rem;
+  border: 1px solid black;
+  width: 98%;
+}
+
+.input span{
+ width: 30%;
+}
+
+.input input{
+  width: 70%;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  border-left: 1px solid black;
+  border-radius: 0;
+}
+
+select.select{
+  width: 70%;
+  border: none;
+  
+  border-left: 1px solid black;
+}
+
+.pick-up{
+  display: flex;
+  padding: 1rem 5vw;
 }
 
 /*Car*/

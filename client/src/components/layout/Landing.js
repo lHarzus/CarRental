@@ -4,6 +4,7 @@ import Car from "../rent/Car";
 import { connect } from "react-redux";
 import { getCars } from "../../actions/cars";
 import loader from "../../images/loading.gif";
+import idk from "../../images/idk.png";
 
 const Landing = ({
   getCars,
@@ -44,6 +45,68 @@ const Landing = ({
             onClick={() => onClick("right")}
           ></i>
         </div>
+      </div>
+      <img src={idk} className="idk"></img>
+      <div className="rent-or-login">
+        {isAuthenticated ? (
+          <div>
+            <h2>BOOK A CAR TODAY!</h2>
+            <div className="pick-up">
+              <div className="input">
+                <span>
+                  <i class="bi bi-geo-alt"></i>PICK-UP
+                </span>
+                <select id="place" name="pick" className="select">
+                  <option value="volvo">Braga</option>
+                  <option value="saab">Porto</option>
+                  <option value="fiat">Coimbra</option>
+                  <option value="audi">Leiria</option>
+                </select>
+              </div>
+              <div className="input">
+                <span>
+                  <i class="bi bi-stopwatch"></i> PICK-UP
+                </span>
+                <input
+                  type="time"
+                  id="appt"
+                  name="appt"
+                  min="09:00"
+                  max="18:00"
+                  required
+                ></input>
+              </div>
+            </div>
+            <div className="pick-up">
+              <div className="input">
+                <span>
+                  <i class="bi bi-geo-alt"></i> DROP-OFF
+                </span>
+                <select id="place" name="drop" className="select">
+                  <option value="volvo">Braga</option>
+                  <option value="saab">Porto</option>
+                  <option value="fiat">Coimbra</option>
+                  <option value="audi">Leiria</option>
+                </select>
+              </div>
+              <div className="input">
+                <span>
+                  <i class="bi bi-stopwatch"></i> PICK-UP
+                </span>
+                <input
+                  type="time"
+                  id="appt"
+                  name="appt"
+                  min="09:00"
+                  max="18:00"
+                  required
+                ></input>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>nao</div>
+        )}
       </div>
     </div>
   );
