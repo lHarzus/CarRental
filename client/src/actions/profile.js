@@ -11,7 +11,7 @@ import {
 } from "./types";
 
 //Get current users profile
-export const getCurrentProfile = () => async dispatch => {
+export const getCurrentProfile = () => async (dispatch) => {
   try {
     const res = await axios.get("/api/profile/me");
 
@@ -28,7 +28,7 @@ export const getCurrentProfile = () => async dispatch => {
 };
 
 //Get all profiles
-export const getProfiles = () => async dispatch => {
+export const getProfiles = () => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   try {
     const res = await axios.get("/api/profile");
@@ -46,7 +46,7 @@ export const getProfiles = () => async dispatch => {
 };
 
 //Get profile by id
-export const getProfileById = userId => async dispatch => {
+export const getProfileById = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
 
@@ -65,7 +65,7 @@ export const getProfileById = userId => async dispatch => {
 //Create or update profile
 export const createProfile =
   (formData, history, edit = false) =>
-  async dispatch => {
+  async (dispatch) => {
     try {
       const config = {
         headers: {
@@ -92,7 +92,7 @@ export const createProfile =
       const erros = err.response.data.erros;
 
       if (erros) {
-        erros.forEach(error => dispatch(setAlert(error.msg, "danger")));
+        erros.forEach((error) => dispatch(setAlert(error.msg, "danger")));
       }
       dispatch({
         type: PROFILE_ERROR,
@@ -102,7 +102,7 @@ export const createProfile =
   };
 
 //Add payment
-export const addPayment = (formData, history) => async dispatch => {
+export const addPayment = (formData, history) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -124,7 +124,7 @@ export const addPayment = (formData, history) => async dispatch => {
     const erros = err.response.data.erros;
 
     if (erros) {
-      erros.forEach(error => dispatch(setAlert(error.msg, "danger")));
+      erros.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: PROFILE_ERROR,
@@ -134,7 +134,7 @@ export const addPayment = (formData, history) => async dispatch => {
 };
 
 //Delete experience
-export const deleteExperience = id => async dispatch => {
+export const deleteExperience = (id) => async (dispatch) => {
   try {
     const res = await axios.delete(`/api/profile/payment/${id}`);
 
@@ -148,7 +148,7 @@ export const deleteExperience = id => async dispatch => {
     const erros = err.response.data.erros;
 
     if (erros) {
-      erros.forEach(error => dispatch(setAlert(error.msg, "danger")));
+      erros.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: PROFILE_ERROR,
@@ -158,7 +158,7 @@ export const deleteExperience = id => async dispatch => {
 };
 
 //Delete Account and profile
-export const deleteAccount = () => async dispatch => {
+export const deleteAccount = () => async (dispatch) => {
   if (window.confirm("Are you sure ? This cannot be undone!")) {
     try {
       await axios.delete(`/api/profile`);
@@ -171,7 +171,7 @@ export const deleteAccount = () => async dispatch => {
       const erros = err.response.data.erros;
 
       if (erros) {
-        erros.forEach(error => dispatch(setAlert(error.msg, "danger")));
+        erros.forEach((error) => dispatch(setAlert(error.msg, "danger")));
       }
       dispatch({
         type: PROFILE_ERROR,

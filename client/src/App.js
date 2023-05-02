@@ -7,6 +7,8 @@ import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import SmoothScroll from "./components/others/ScrollToTop";
+import PrivateRoute from "./components/routing/PrivateRoute";
+import Profile from "./components/auth/Profile";
 
 //Redux
 import { Provider } from "react-redux";
@@ -31,6 +33,14 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
         </Routes>
         <Footer />
       </Router>
