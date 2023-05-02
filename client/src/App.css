@@ -136,6 +136,23 @@ input:disabled {
   transition: background 0.2s;
 }
 
+.btn2 {
+  color: #111111;
+  background-color: white;
+  border-radius: 25px;
+  padding: 1rem 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: none;
+}
+
+.btn2:hover {
+  color: white;
+  background-color: #111111;
+}
+
 .btn:hover {
   background: #d62b00;
   transition: background 0.2s;
@@ -268,6 +285,7 @@ input:disabled {
 .footer {
   background-color: rgb(56, 56, 56);
   font-size: 2rem;
+  padding-bottom: 2rem;
 }
 
 .footer-logo {
@@ -417,7 +435,7 @@ input:disabled {
 }
 
 .idk-image{
-  margin-bottom: -1rem;
+  margin-bottom: -5rem;
 }
 
 .rent-or-login{
@@ -427,21 +445,31 @@ input:disabled {
 }
 
 .rent-or-login h2{
-  color: white;
+  color: #111111;
   padding: 3rem;
 }
+
+.rent-buttons{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.rent-buttons a{
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+} 
 
 .input{
   display: flex;
   background-color: white;
   color: black;
   margin: 1rem;
-  border: 1px solid black;
   width: 98%;
 }
 
 .input span{
  width: 30%;
+ font-size: 1rem !important;
 }
 
 .input input{
@@ -463,6 +491,18 @@ select.select{
 .pick-up{
   display: flex;
   padding: 1rem 5vw;
+}
+
+@media screen and (min-width: 1024px) {
+  .input span{
+    font-size: 2rem !important;
+   }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .input span{
+    font-size: 1.5rem !important;
+   }
 }
 
 /*Car*/

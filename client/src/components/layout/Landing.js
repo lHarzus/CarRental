@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getCars } from "../../actions/cars";
 import loader from "../../images/loading.gif";
 import idk from "../../images/idk.png";
+import { Link } from "react-router-dom";
 
 const Landing = ({
   getCars,
@@ -51,7 +52,7 @@ const Landing = ({
       </div>
       <div className="rent-or-login">
         {isAuthenticated ? (
-          <div>
+          <form>
             <h2>BOOK A CAR TODAY!</h2>
             <div className="pick-up">
               <div className="input">
@@ -105,9 +106,20 @@ const Landing = ({
                 ></input>
               </div>
             </div>
-          </div>
+            <input type="submit" value="Book it" className="btn2"></input>
+          </form>
         ) : (
-          <div>nao</div>
+          <div className="rent-a-car">
+            <h2>Log in now to rent it</h2>
+            <div className="rent-buttons">
+              <Link to="/login" className="btn2">
+                Login
+              </Link>
+              <Link to="/register" className="btn2">
+                Register
+              </Link>
+            </div>
+          </div>
         )}
       </div>
     </div>

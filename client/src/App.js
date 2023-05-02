@@ -6,6 +6,7 @@ import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import SmoothScroll from "./components/others/ScrollToTop";
 
 //Redux
 import { Provider } from "react-redux";
@@ -24,6 +25,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
+        <SmoothScroll />
         <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
