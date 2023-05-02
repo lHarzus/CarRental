@@ -22,6 +22,7 @@ html {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  overflow-x:hidden;
 }
 
 /*Typography*/
@@ -340,11 +341,12 @@ input:disabled {
   align-items: center;
   margin: 5rem 0 ;
   padding: 0 5rem;
-  width: 86vw;
+  width: 80vw;
 }
 
 .cars{
   margin: 0 5vw;
+  justify-content: center;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
   padding: 5rem 0;
@@ -352,6 +354,7 @@ input:disabled {
 
 .middle-item {
   grid-column: span 4;
+  max-width: 100%;
 }
 
 .left-item {
@@ -372,6 +375,7 @@ input:disabled {
 @media screen and (max-width: 1024px) {
   .grid-3x1{
     display: block;
+    width: 100%;
   }
 
   .cars{
@@ -382,6 +386,7 @@ input:disabled {
 
   .middle-item {
     grid-column: span 1;
+    max-width: 60vw;
   }
 }
 
@@ -408,14 +413,15 @@ input:disabled {
 }
 
 .idk{
-  width: 98.8vw;
-  margin: 0;
-  padding: auto;
+  width: 100vw;
+}
+
+.idk-image{
+  margin-bottom: -1rem;
 }
 
 .rent-or-login{
   background-color: rgb(255, 127, 39);
-  margin: -4.4rem 0 0;
   padding-bottom: 3rem;
   text-align: center;
 }
@@ -462,9 +468,15 @@ select.select{
 /*Car*/
 .car-photo {
   width: 40vw; 
-  height: 40vh; 
+  height: 10vh; 
+  max-width: 650px;
+  max-height: 400px;
   object-fit: fill;
   border-radius: 10px;
+}
+
+.car-header{
+  width: 100%;
 }
 
 .car-header h3{
@@ -479,6 +491,24 @@ select.select{
 .car-foto{
   overflow: hidden;  
   min-width: 0;     
+}
+
+@media screen and (min-width: 1024px) {
+  .car-photo {
+    height: 40vh; 
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1023px){
+  .car-photo {
+    height: 30vh; 
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 699px){
+  .car-photo {
+    height: 20vh; 
+  }
 }
 
 /*Tables*/

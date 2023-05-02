@@ -46,7 +46,9 @@ const Landing = ({
           ></i>
         </div>
       </div>
-      <img src={idk} className="idk"></img>
+      <div className="idk-image">
+        <img src={idk} className="idk"></img>
+      </div>
       <div className="rent-or-login">
         {isAuthenticated ? (
           <div>
