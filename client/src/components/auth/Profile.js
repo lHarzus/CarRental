@@ -17,6 +17,7 @@ const Profile = ({
   deleteOrder,
   createProfile,
   profile: { profile, loading },
+  auth: { user },
 }) => {
   useEffect(() => {
     getCurrentProfile();
@@ -42,6 +43,7 @@ const Profile = ({
     street: "",
     postCode: "",
     city: "",
+    user: "",
   });
 
   useEffect(() => {
@@ -51,6 +53,7 @@ const Profile = ({
         street: profile.address.street,
         postCode: profile.address.postCode,
         city: profile.address.city,
+        user: user,
       });
   }, [loading]);
 
@@ -61,13 +64,15 @@ const Profile = ({
       </div>
     );
   } else {
-    const { phone, street, postCode, city } = formData;
+    const { phone, street, postCode, city, user } = formData;
 
-    const onChange = (e) => setFormData({ [e.target.name]: e.target.value });
+    const onChange = (e) =>
+      setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit = (e) => {
       e.preventDefault();
-      createProfile({ phone, address: { street, postCode, city } });
+      createProfile({ user, phone, address: { street, postCode, city } });
+      setChangeInfo(false);
     };
 
     const info = (
@@ -93,7 +98,7 @@ const Profile = ({
     const infoChanger = (
       <Fragment>
         <h3>Change Info</h3>
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form onSubmit={(e) => onSubmit(e)} className="info-form">
           <div>
             <input
               placeholder="Phone number"
@@ -138,21 +143,35 @@ const Profile = ({
           {option === "profile" ? (
             <Fragment>
               <div className="profile-avatar">
-                <img src={profile.user.avatar}></img>
-                <p>{profile.user.name}</p>
+                <img src={user.avatar}></img>
+                <p>{user.name}</p>
               </div>
               {changeInfo ? infoChanger : info}
-              <div className="profile-change">
-                <button
-                  className="btn"
-                  onClick={() => setChangeInfo(!changeInfo)}
-                >
-                  {changeInfo ? "Change" : "Change info"}
-                </button>
-              </div>
+              {changeInfo ? (
+                ""
+              ) : (
+                <div className="profile-change">
+                  <button
+                    className="btn"
+                    onClick={() => setChangeInfo(!changeInfo)}
+                  >
+                    Change info
+                  </button>
+                </div>
+              )}
             </Fragment>
           ) : option === "payment" ? (
-            <div>Payment</div>
+            <Fragment>
+              <h3>
+                {profile.payment.length === 0
+                  ? "No Payment Methods"
+                  : "Payment options"}
+              </h3>
+              {profile.payment.map((p) => (
+                <p>ola</p>
+              ))}
+              <button className="btn2">Add Payment Card</button>
+            </Fragment>
           ) : (
             <div>order</div>
           )}
@@ -173,6 +192,7 @@ Profile.propTypes = {
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, {
