@@ -586,6 +586,10 @@ select.select{
   transition: background 0.3s;
 }
 
+.selected{
+  background: #333232 !important;
+}
+
 .profile-avatar{
   text-align: center;
   margin: 3rem 0;

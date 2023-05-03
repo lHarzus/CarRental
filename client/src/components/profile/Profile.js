@@ -12,6 +12,8 @@ import { connect } from "react-redux";
 import spinner from "../../images/loading.gif";
 import { Payments } from "./Payments";
 import { Details } from "./Details";
+import { Options } from "./Options";
+import { Orders } from "./Orders";
 
 const Profile = ({
   getCurrentProfile,
@@ -29,25 +31,7 @@ const Profile = ({
 
   const [option, setOption] = useState("profile");
   const [changeInfo, setChangeInfo] = useState(false);
-  const [formData, setFormData] = useState({
-    phone: "",
-    street: "",
-    postCode: "",
-    city: "",
-    user: "",
-  });
   const [addPaymentCard, setAddPaymentCard] = useState(false);
-
-  useEffect(() => {
-    if (!loading)
-      setFormData({
-        phone: profile.phone,
-        street: profile.address.street,
-        postCode: profile.address.postCode,
-        city: profile.address.city,
-        user: user,
-      });
-  }, [loading]);
 
   if (loading) {
     return (
@@ -58,35 +42,12 @@ const Profile = ({
   } else {
     return (
       <div className="profile">
-        <div className="profile-options">
-          <button
-            onClick={() => {
-              setOption("profile");
-              setAddPaymentCard(false);
-              setChangeInfo(false);
-            }}
-          >
-            Profile details
-          </button>
-          <button
-            onClick={() => {
-              setOption("payment");
-              setAddPaymentCard(false);
-              setChangeInfo(false);
-            }}
-          >
-            Payments
-          </button>
-          <button
-            onClick={() => {
-              setOption("order");
-              setAddPaymentCard(false);
-              setChangeInfo(false);
-            }}
-          >
-            Orders
-          </button>
-        </div>
+        <Options
+          setOption={setOption}
+          setAddPaymentCard={setAddPaymentCard}
+          setChangeInfo={setChangeInfo}
+          option={option}
+        />
         <div className="profile-option">
           {option === "profile" ? (
             <Details
@@ -94,9 +55,8 @@ const Profile = ({
               changeInfo={changeInfo}
               setChangeInfo={setChangeInfo}
               profile={profile}
-              formData={formData}
-              setFormData={setFormData}
               createProfile={createProfile}
+              loading={loading}
             />
           ) : option === "payment" ? (
             <Payments
@@ -107,7 +67,7 @@ const Profile = ({
               addPayment={addPayment}
             />
           ) : (
-            <div>order</div>
+            <Orders />
           )}
         </div>
       </div>

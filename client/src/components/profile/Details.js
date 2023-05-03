@@ -1,12 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 export const Details = ({
   profile,
   changeInfo,
   setChangeInfo,
-  formData,
-  setFormData,
   createProfile,
+  loading,
 }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,6 +15,25 @@ export const Details = ({
     createProfile({ user, phone, address: { street, postCode, city } });
     setChangeInfo(false);
   };
+
+  const [formData, setFormData] = useState({
+    phone: "",
+    street: "",
+    postCode: "",
+    city: "",
+    user: "",
+  });
+
+  useEffect(() => {
+    if (!loading)
+      setFormData({
+        phone: profile.phone,
+        street: profile.address.street,
+        postCode: profile.address.postCode,
+        city: profile.address.city,
+        user: user,
+      });
+  }, [loading]);
 
   const { phone, street, postCode, city, user } = formData;
 
