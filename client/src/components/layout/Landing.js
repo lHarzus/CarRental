@@ -4,13 +4,15 @@ import Car from "../rent/Car";
 import { connect } from "react-redux";
 import { getCars } from "../../actions/cars";
 import loader from "../../images/loading.gif";
-import idk from "../../images/idk.png";
 import { Link } from "react-router-dom";
+import { addOrder } from "../../actions/profile";
+import { Booking } from "../orders/Booking";
 
 const Landing = ({
   getCars,
   auth: { isAuthenticated },
   cars: { cars, loading },
+  addOrder,
 }) => {
   useEffect(() => {
     getCars();
@@ -47,81 +49,12 @@ const Landing = ({
           ></i>
         </div>
       </div>
-      <div className="idk-image">
-        <img src={idk} className="idk"></img>
-      </div>
-      <div className="rent-or-login">
-        {isAuthenticated ? (
-          <form>
-            <h2>BOOK A CAR TODAY!</h2>
-            <div className="pick-up">
-              <div className="input">
-                <span>
-                  <i className="bi bi-geo-alt"></i>PICK-UP
-                </span>
-                <select id="place" name="pick" className="select">
-                  <option value="volvo">Braga</option>
-                  <option value="saab">Porto</option>
-                  <option value="fiat">Coimbra</option>
-                  <option value="audi">Leiria</option>
-                </select>
-              </div>
-              <div className="input">
-                <span>
-                  <i className="bi bi-stopwatch"></i> PICK-UP
-                </span>
-                <input
-                  type="time"
-                  id="appt"
-                  name="appt"
-                  min="09:00"
-                  max="18:00"
-                  required
-                ></input>
-              </div>
-            </div>
-            <div className="pick-up">
-              <div className="input">
-                <span>
-                  <i className="bi bi-geo-alt"></i> DROP-OFF
-                </span>
-                <select id="place" name="drop" className="select">
-                  <option value="volvo">Braga</option>
-                  <option value="saab">Porto</option>
-                  <option value="fiat">Coimbra</option>
-                  <option value="audi">Leiria</option>
-                </select>
-              </div>
-              <div className="input">
-                <span>
-                  <i className="bi bi-stopwatch"></i> PICK-UP
-                </span>
-                <input
-                  type="time"
-                  id="appt"
-                  name="appt"
-                  min="09:00"
-                  max="18:00"
-                  required
-                ></input>
-              </div>
-            </div>
-            <input type="submit" value="Book it" className="btn2"></input>
-          </form>
-        ) : (
-          <div className="rent-a-car">
-            <h2>Log in now to rent it</h2>
-            <div className="rent-buttons">
-              <Link to="/login" className="btn2">
-                Login
-              </Link>
-              <Link to="/register" className="btn2">
-                Register
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
+      <Booking
+        isAuthenticated={isAuthenticated}
+        addOrder={addOrder}
+        cars={cars}
+        index={index}
+      />
     </div>
   );
 };
@@ -130,6 +63,7 @@ Landing.propTypes = {
   auth: PropTypes.object.isRequired,
   cars: PropTypes.object.isRequired,
   getCars: PropTypes.func.isRequired,
+  addOrder: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -137,4 +71,4 @@ const mapStateToProps = (state) => ({
   cars: state.cars,
 });
 
-export default connect(mapStateToProps, { getCars })(Landing);
+export default connect(mapStateToProps, { getCars, addOrder })(Landing);

@@ -18,8 +18,8 @@ export const Orders = ({ orders, history }) => {
           <Fragment>
             {orders.length > 0 ? (
               <Fragment>
-                {orders.map((h) => (
-                  <div className="orders">
+                {orders.map((h, i) => (
+                  <div className="orders" key={i}>
                     <p>ola</p>
                   </div>
                 ))}
@@ -32,8 +32,8 @@ export const Orders = ({ orders, history }) => {
           <Fragment>
             {history.length > 0 ? (
               <Fragment>
-                {history.map((h) => (
-                  <div className="history">
+                {history.map((h, i) => (
+                  <div className="history" key={i}>
                     <p>ola</p>
                   </div>
                 ))}

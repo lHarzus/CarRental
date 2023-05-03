@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import spinner from "../../images/loading.gif";
 
 export const Details = ({
   profile,
@@ -94,22 +95,30 @@ export const Details = ({
     </Fragment>
   );
 
-  return (
-    <Fragment>
-      <div className="profile-avatar">
-        <img src={user.avatar}></img>
-        <p>{user.name}</p>
+  if (loading) {
+    return (
+      <div>
+        <img src={spinner}></img>
       </div>
-      {changeInfo ? infoChanger : info}
-      {changeInfo ? (
-        ""
-      ) : (
-        <div className="profile-change">
-          <button className="btn" onClick={() => setChangeInfo(!changeInfo)}>
-            Change info
-          </button>
+    );
+  } else {
+    return (
+      <Fragment>
+        <div className="profile-avatar">
+          <img src={user.avatar}></img>
+          <p>{user.name}</p>
         </div>
-      )}
-    </Fragment>
-  );
+        {changeInfo ? infoChanger : info}
+        {changeInfo ? (
+          ""
+        ) : (
+          <div className="profile-change">
+            <button className="btn" onClick={() => setChangeInfo(!changeInfo)}>
+              Change info
+            </button>
+          </div>
+        )}
+      </Fragment>
+    );
+  }
 };
