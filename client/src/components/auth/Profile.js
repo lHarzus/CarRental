@@ -9,6 +9,7 @@ import {
 } from "../../actions/profile";
 import { connect } from "react-redux";
 import spinner from "../../images/loading.gif";
+import Alert from "../../components/layout/Alert";
 
 const Profile = ({
   getCurrentProfile,
@@ -45,6 +46,12 @@ const Profile = ({
     city: "",
     user: "",
   });
+  const [formData2, setFormData2] = useState({
+    number: "",
+    code: "",
+    nome: "",
+  });
+  const [addPaymentCard, setAddPaymentCard] = useState(false);
 
   useEffect(() => {
     if (!loading)
@@ -65,14 +72,25 @@ const Profile = ({
     );
   } else {
     const { phone, street, postCode, city, user } = formData;
+    const { nome, code, number } = formData2;
 
     const onChange = (e) =>
       setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const onChange2 = (e) =>
+      setFormData2({ ...formData2, [e.target.name]: e.target.value });
 
     const onSubmit = (e) => {
       e.preventDefault();
       createProfile({ user, phone, address: { street, postCode, city } });
       setChangeInfo(false);
+    };
+
+    const onSubmit2 = (e) => {
+      e.preventDefault();
+      addPayment({ number, code, name: nome });
+      setFormData2({ number: "", code: "", nome: "" });
+      setAddPaymentCard(false);
     };
 
     const info = (
@@ -135,9 +153,33 @@ const Profile = ({
     return (
       <div className="profile">
         <div className="profile-options">
-          <button onClick={() => setOption("profile")}>Profile details</button>
-          <button onClick={() => setOption("payment")}>Payments</button>
-          <button onClick={() => setOption("order")}>Orders</button>
+          <button
+            onClick={() => {
+              setOption("profile");
+              setAddPaymentCard(false);
+              setChangeInfo(false);
+            }}
+          >
+            Profile details
+          </button>
+          <button
+            onClick={() => {
+              setOption("payment");
+              setAddPaymentCard(false);
+              setChangeInfo(false);
+            }}
+          >
+            Payments
+          </button>
+          <button
+            onClick={() => {
+              setOption("order");
+              setAddPaymentCard(false);
+              setChangeInfo(false);
+            }}
+          >
+            Orders
+          </button>
         </div>
         <div className="profile-option">
           {option === "profile" ? (
@@ -162,15 +204,70 @@ const Profile = ({
             </Fragment>
           ) : option === "payment" ? (
             <Fragment>
-              <h3>
-                {profile.payment.length === 0
-                  ? "No Payment Methods"
-                  : "Payment options"}
-              </h3>
-              {profile.payment.map((p) => (
-                <p>ola</p>
-              ))}
-              <button className="btn2">Add Payment Card</button>
+              {!addPaymentCard ? (
+                <Fragment>
+                  <h3>
+                    {profile.payment.length === 0
+                      ? "No Payment Methods"
+                      : "Payment options"}
+                  </h3>
+                  {profile.payment.map((p, i) => (
+                    <div key={i} className="payment">
+                      <p>Number: {p.number}</p>
+                      <p>Code: {p.code}</p>
+                      <p>Name: {p.name}</p>
+                    </div>
+                  ))}
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <h3>Add Payment Method</h3>
+                  <form onSubmit={(e) => onSubmit2(e)}>
+                    <div>
+                      <input
+                        placeholder="Number"
+                        name="number"
+                        value={number}
+                        onChange={(e) => onChange2(e)}
+                      ></input>
+                    </div>
+                    <div>
+                      <input
+                        placeholder="Code"
+                        name="code"
+                        value={code}
+                        onChange={(e) => onChange2(e)}
+                      ></input>
+                    </div>
+                    <div>
+                      <input
+                        placeholder="Name"
+                        name="nome"
+                        value={nome}
+                        onChange={(e) => onChange2(e)}
+                      ></input>
+                    </div>
+                    <div>
+                      <input
+                        type="submit"
+                        value="Submit"
+                        className="btn"
+                      ></input>
+                    </div>
+                  </form>
+                  <Alert />
+                </Fragment>
+              )}
+              {addPaymentCard ? (
+                ""
+              ) : (
+                <button
+                  className="btn2"
+                  onClick={() => setAddPaymentCard(!addPaymentCard)}
+                >
+                  Add Payment Card
+                </button>
+              )}
             </Fragment>
           ) : (
             <div>order</div>

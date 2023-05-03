@@ -86,7 +86,7 @@ export const createProfile =
 
       if (!edit) {
         //if we're creating a new profile we get redirected
-        history("/dashboard");
+        history("/");
       }
     } catch (err) {
       const erros = err.response.data.erros;
@@ -104,6 +104,7 @@ export const createProfile =
 //Add payment
 export const addPayment = (formData, history) => async (dispatch) => {
   try {
+    console.log(formData);
     const config = {
       headers: {
         "Content-Type": "application/json",

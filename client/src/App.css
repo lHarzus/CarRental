@@ -596,6 +596,19 @@ select.select{
   margin: 4rem 0;
 }
 
+.info-form{
+  text-align: center;
+}
+
+.payment{
+  background: #3b3b3b;
+  max-width: 80%;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 15px;
+  font-size: 2rem;
+}
+
 @media screen and (min-width: 1024px) {
   .profile{
     padding: 12rem 10vw;
@@ -615,6 +628,10 @@ select.select{
     margin:  0;
   }
   .profile-change{
+    text-align: left;
+  }
+
+  .info-form{
     text-align: left;
   }
 }
