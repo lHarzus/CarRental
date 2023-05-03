@@ -562,6 +562,7 @@ select.select{
 .profile{
   padding: 12rem 10vw;
   background-color: #111111;
+  min-height: 76.2vh;
 }
 
 .profile-options{
@@ -651,4 +652,10 @@ select.select{
     justify-content: space-between;
     align-items: center;
   }
+}
+
+/*Orders*/
+.orders-buttons{
+  display: flex;
+  justify-content: space-evenly;
 }

@@ -67,7 +67,7 @@ const Profile = ({
               addPayment={addPayment}
             />
           ) : (
-            <Orders />
+            <Orders orders={profile.orders} history={profile.history} />
           )}
         </div>
       </div>
