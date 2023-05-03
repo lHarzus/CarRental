@@ -39,6 +39,62 @@ const ProfileSchema = new mongoose.Schema({
       },
     },
   ],
+  orders: [
+    {
+      car: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "car",
+      },
+      pickup: {
+        place: {
+          type: String,
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+      dropoff: {
+        place: {
+          type: String,
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    },
+  ],
+  history: [
+    {
+      car: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "car",
+      },
+      pickup: {
+        place: {
+          type: String,
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+      dropoff: {
+        place: {
+          type: String,
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

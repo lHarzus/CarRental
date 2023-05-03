@@ -44,7 +44,8 @@ router.post(
     profileFields.user = req.user.id;
     profileFields.phone = phone;
     if (address) profileFields.address = address;
-    if (payment) profileFields.payment = payment.split(",").map(p => p.trim());
+    if (payment)
+      profileFields.payment = payment.split(",").map((p) => p.trim());
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
@@ -168,10 +169,84 @@ router.delete("/payment/:payment_id", auth, async (req, res) => {
     const profile = await Profile.findOne({ user: req.user.id });
 
     const removeIndex = profile.payment
-      .map(item => item.id)
+      .map((item) => item.id)
       .indexOf(req.params.payment_id);
 
     profile.payment.splice(removeIndex, 1);
+
+    await profile.save();
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   PUT api/profile/order
+// @desc    Add profile order
+// @access  Private
+router.put("/order", auth, async (req, res) => {
+  const { car, pickup, dropoff } = req.body;
+
+  const newExp = {
+    car,
+    pickup,
+    dropoff,
+  };
+
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    profile.orders.unshift(newExp);
+
+    await profile.save();
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   PUT api/profile/history
+// @desc    Add profile history
+// @access  Private
+router.put("/history", auth, async (req, res) => {
+  const { car, pickup, dropoff } = req.body;
+
+  const newExp = {
+    car,
+    pickup,
+    dropoff,
+  };
+
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    profile.history.unshift(newExp);
+
+    await profile.save();
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   DELETE api/profile/order/:order_id
+// @desc    Delete profile order
+// @access  Private
+router.delete("/order/:order_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const removeIndex = profile.orders
+      .map((item) => item.id)
+      .indexOf(req.params.order_id);
+
+    profile.orders.splice(removeIndex, 1);
 
     await profile.save();
 

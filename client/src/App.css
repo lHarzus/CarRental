@@ -134,6 +134,7 @@ input:disabled {
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.2s;
+  border: none;
 }
 
 .btn2 {
@@ -555,4 +556,65 @@ select.select{
 .table{
   text-align: left;
   font-size: 1.5rem;
+}
+
+/*Profile*/
+.profile{
+  padding: 12rem 10vw;
+  background-color: #111111;
+}
+
+.profile-options{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 20vh;
+}
+
+.profile-options button{
+  background: #6e6e6e;
+  height: 100%;
+  border: 1px solid #333232;
+  cursor: pointer;
+  color: white;
+  font-size: 1.7rem;
+  transition: background 0.3s;
+}
+
+.profile-options button:hover{
+  background: #333232;
+  transition: background 0.3s;
+}
+
+.profile-avatar{
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.profile-change{
+  text-align: center;
+  margin: 4rem 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .profile{
+    padding: 12rem 10vw;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap: 3vw;
+  }
+
+  .profile-option{
+    grid-column: span 3;
+  }
+
+  .profile-avatar{
+    display: flex;
+    gap: 4rem;
+    align-items:end;
+    margin:  0;
+  }
+  .profile-change{
+    text-align: left;
+  }
 }

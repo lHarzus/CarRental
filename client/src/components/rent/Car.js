@@ -18,30 +18,32 @@ const Car = (vehicle) => {
         </div>
         <div className="car-stats">
           <table className="table">
-            <tr>
-              <th>Fuel:</th>
-              <td>{car.fuel}</td>
-            </tr>
-            <tr>
-              <th>Top Speed:</th>
-              <td>{car.topSpeed} Km/h</td>
-            </tr>
-            <tr>
-              <th> Consumption:</th>
-              <td>{car.consumption} l/100km</td>
-            </tr>
-            <tr>
-              <th>Capacity:</th>
-              <td>{car.capacity}</td>
-            </tr>
-            <tr>
-              <th>HP:</th>
-              <td>{car.hp}</td>
-            </tr>
-            <tr>
-              <th>Year:</th>
-              <td>{car.year}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <th>Fuel:</th>
+                <td>{car.fuel}</td>
+              </tr>
+              <tr>
+                <th>Top Speed:</th>
+                <td>{car.topSpeed} Km/h</td>
+              </tr>
+              <tr>
+                <th> Consumption:</th>
+                <td>{car.consumption} l/100km</td>
+              </tr>
+              <tr>
+                <th>Capacity:</th>
+                <td>{car.capacity}</td>
+              </tr>
+              <tr>
+                <th>HP:</th>
+                <td>{car.hp}</td>
+              </tr>
+              <tr>
+                <th>Year:</th>
+                <td>{car.year}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>

@@ -11,7 +11,17 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul className={visible ? "navbar-items" : "navbar-items invisible"}>
       <li>
-        <a href="#">Home</a>
+        <Link
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          }}
+          to="/"
+        >
+          Home
+        </Link>
       </li>
       <li>
         <Link to="/">Rent</Link>
@@ -37,7 +47,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               behavior: "smooth",
             });
           }}
-          to="/">
+          to="/"
+        >
           Home
         </Link>
       </li>
@@ -64,14 +75,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             });
           }}
           to="/"
-          className="navbar-logo">
+          className="navbar-logo"
+        >
           <img src={logo}></img>
           <h2>RentACar</h2>
         </Link>
 
         <i
           className="bi bi-list toggler"
-          onClick={() => setVisible(!visible)}></i>
+          onClick={() => setVisible(!visible)}
+        ></i>
       </div>
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
@@ -85,7 +98,7 @@ Navbar.propTypes = {
   auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 

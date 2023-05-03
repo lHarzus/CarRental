@@ -109,9 +109,10 @@ export const addPayment = (formData, history) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
+    console.log("qewfwef");
 
     const res = await axios.put("/api/profile/payment", formData, config);
-
+    console.log(res.data);
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data,
@@ -133,8 +134,8 @@ export const addPayment = (formData, history) => async (dispatch) => {
   }
 };
 
-//Delete experience
-export const deleteExperience = (id) => async (dispatch) => {
+//Delete Payment
+export const deletePayment = (id) => async (dispatch) => {
   try {
     const res = await axios.delete(`/api/profile/payment/${id}`);
 
@@ -143,7 +144,7 @@ export const deleteExperience = (id) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Experience Removed", "success"));
+    dispatch(setAlert("Payment Removed", "success"));
   } catch (err) {
     const erros = err.response.data.erros;
 
@@ -178,5 +179,93 @@ export const deleteAccount = () => async (dispatch) => {
         payload: { msg: err.response.statusText, status: err.response.status },
       });
     }
+  }
+};
+
+//Add Order
+export const addOrder = (formData, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put("/api/profile/order", formData, config);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Order added", "success")); //set an alert
+
+    //history("/dashboard");
+  } catch (err) {
+    const erros = err.response.data.erros;
+
+    if (erros) {
+      erros.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//Add history
+export const addHistory = (formData, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put("/api/profile/history", formData, config);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("History added", "success")); //set an alert
+
+    //history("/dashboard");
+  } catch (err) {
+    const erros = err.response.data.erros;
+
+    if (erros) {
+      erros.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//Delete Order
+export const deleteOrder = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/profile/order/${id}`);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Order Removed", "success"));
+  } catch (err) {
+    const erros = err.response.data.erros;
+
+    if (erros) {
+      erros.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
   }
 };

@@ -57,7 +57,7 @@ const Landing = ({
             <div className="pick-up">
               <div className="input">
                 <span>
-                  <i class="bi bi-geo-alt"></i>PICK-UP
+                  <i className="bi bi-geo-alt"></i>PICK-UP
                 </span>
                 <select id="place" name="pick" className="select">
                   <option value="volvo">Braga</option>
@@ -68,7 +68,7 @@ const Landing = ({
               </div>
               <div className="input">
                 <span>
-                  <i class="bi bi-stopwatch"></i> PICK-UP
+                  <i className="bi bi-stopwatch"></i> PICK-UP
                 </span>
                 <input
                   type="time"
@@ -83,7 +83,7 @@ const Landing = ({
             <div className="pick-up">
               <div className="input">
                 <span>
-                  <i class="bi bi-geo-alt"></i> DROP-OFF
+                  <i className="bi bi-geo-alt"></i> DROP-OFF
                 </span>
                 <select id="place" name="drop" className="select">
                   <option value="volvo">Braga</option>
@@ -94,7 +94,7 @@ const Landing = ({
               </div>
               <div className="input">
                 <span>
-                  <i class="bi bi-stopwatch"></i> PICK-UP
+                  <i className="bi bi-stopwatch"></i> PICK-UP
                 </span>
                 <input
                   type="time"
