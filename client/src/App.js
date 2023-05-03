@@ -8,7 +8,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import SmoothScroll from "./components/others/ScrollToTop";
 import PrivateRoute from "./components/routing/PrivateRoute";
-import Profile from "./components/auth/Profile";
+import Profile from "./components/profile/Profile";
 
 //Redux
 import { Provider } from "react-redux";

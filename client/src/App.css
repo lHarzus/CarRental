@@ -607,6 +607,13 @@ select.select{
   margin: 1rem;
   border-radius: 15px;
   font-size: 2rem;
+  display: block;
+}
+
+.payment i {
+  color: var(--color-accent);
+  font-size: 3rem;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 1024px) {
@@ -633,5 +640,11 @@ select.select{
 
   .info-form{
     text-align: left;
+  }
+
+  .payment{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
