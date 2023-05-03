@@ -22,7 +22,7 @@ export const Booking = ({ isAuthenticated, addOrder, cars, index }) => {
     date1.setHours(Number(pickTime.slice(0, 2)), Number(pickTime.slice(3, 5)));
     date2.setHours(Number(dropTime.slice(0, 2)), Number(dropTime.slice(3, 5)));
     addOrder({
-      car: cars[index]._id,
+      car: cars[index],
       pickup: {
         place: pickPlace,
         date: date1,

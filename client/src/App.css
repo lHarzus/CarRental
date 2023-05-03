@@ -621,6 +621,21 @@ select.select{
   cursor: pointer;
 }
 
+.order{
+  background: #3b3b3b;
+  max-width: 80%;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 15px;
+  font-size: 2rem;
+
+}
+
+.tab {
+  display: inline-block;
+  margin-left: 40px;
+}
+
 @media screen and (min-width: 1024px) {
   .profile{
     padding: 12rem 10vw;

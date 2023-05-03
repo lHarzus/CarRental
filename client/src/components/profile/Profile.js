@@ -13,7 +13,7 @@ import spinner from "../../images/loading.gif";
 import { Payments } from "./Payments";
 import { Details } from "./Details";
 import { Options } from "./Options";
-import { Orders } from "./Orders";
+import Orders from "./Orders";
 
 const Profile = ({
   getCurrentProfile,

@@ -4,7 +4,6 @@ import Car from "../rent/Car";
 import { connect } from "react-redux";
 import { getCars } from "../../actions/cars";
 import loader from "../../images/loading.gif";
-import { Link } from "react-router-dom";
 import { addOrder } from "../../actions/profile";
 import { Booking } from "../orders/Booking";
 
