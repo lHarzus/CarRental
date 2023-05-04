@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from "react";
 import idk from "../../images/idk.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Booking = ({ isAuthenticated, addOrder, cars, index }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     pickPlace: "Braga",
     pickTime: "",
@@ -21,23 +23,26 @@ export const Booking = ({ isAuthenticated, addOrder, cars, index }) => {
     const date2 = new Date();
     date1.setHours(Number(pickTime.slice(0, 2)), Number(pickTime.slice(3, 5)));
     date2.setHours(Number(dropTime.slice(0, 2)), Number(dropTime.slice(3, 5)));
-    addOrder({
-      car: cars[index],
-      pickup: {
-        place: pickPlace,
-        date: date1,
-      },
-      dropoff: {
-        place: dropPlace,
-        date: date2,
-      },
-    });
-    setFormData({
-      pickPlace: "Braga",
-      pickTime: "",
-      dropPlace: "Braga",
-      dropTime: "",
-    });
+    if (date1 > Date.now() && date2 > date1) {
+      addOrder({
+        car: cars[index],
+        pickup: {
+          place: pickPlace,
+          date: date1,
+        },
+        dropoff: {
+          place: dropPlace,
+          date: date2,
+        },
+      });
+      setFormData({
+        pickPlace: "Braga",
+        pickTime: "",
+        dropPlace: "Braga",
+        dropTime: "",
+      });
+      navigate("/profile");
+    }
   };
 
   return (
